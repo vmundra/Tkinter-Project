@@ -17,15 +17,15 @@ class Menubar:
 		## place the dropdown in the menubar
 		file_dropdown = tk.Menu(menubar, font = font_specs, tearoff=0) ## this tearoff is passed bcoz else we are able to take the 
 		## File menu icon and move it anywhere, thus to keep it stable we pass this argument
-	
-		file_dropdown.add_command(label="New File")
-		file_dropdown.add_command(label="Open File")
-		file_dropdown.add_command(label="Save")
-		file_dropdown.add_command(label="Save As")
+
+		file_dropdown.add_command(label="New File", command=parent.new_file)
+		file_dropdown.add_command(label="Open File", command=parent.open_file)
+		file_dropdown.add_command(label="Save", command=parent.save)
+		file_dropdown.add_command(label="Save As", command=parent.save_as)
 		file_dropdown.add_separator()
 		file_dropdown.add_command(label="Exit")
 
-		menubar.add_cascade(label = "File" ,menu=file_dropdown)
+		menubar.add_cascade(label = "File" ,menu=file_dropdown, command = parent.master.destroy)
 
 
 ## This is going to be the main class
@@ -65,6 +65,22 @@ class Pytext:
 
 
 		self.menubar = Menubar(self)
+
+
+	def set_window_title(self):
+		pass
+
+	def new_file(self):
+		pass
+
+	def open_file(self):
+		pass
+
+	def save(self):
+		pass
+
+	def save_as(self):
+		pass
 
 
 ##this is the code which is going to launch our program
