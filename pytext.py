@@ -106,7 +106,7 @@ class Pytext:
 
 
 
-	def new_file(self):
+	def new_file(self, *args):
 		
 		self.textarea.delete(1.0, tk.END)
 		self.filename = None
@@ -114,7 +114,7 @@ class Pytext:
 
 
 
-	def open_file(self):
+	def open_file(self, *args):
 		
 		self.filename = filedialog.askopenfilename(defaultextension=".txt", filetypes=[("All Files", "*.*"),
 																						("Text File" , "*.txt"),
@@ -137,7 +137,7 @@ class Pytext:
 
 
 
-	def save(self):
+	def save(self, *args):
 		
 		if self.filename:
 			
@@ -156,7 +156,7 @@ class Pytext:
 
 
 
-	def save_as(self):
+	def save_as(self, *args):
 		
 		try:
 			new_file = filedialog.asksaveasfilename(initialfile ="Untitled.txt",defaultextension=".txt", filetypes=[("All Files", "*.*"),
