@@ -2,6 +2,14 @@
 import tkinter as tk
 
 
+
+class Menubar:
+
+	def __init__(self, parent):
+		pass
+
+
+
 ## This is going to be the main class
 ## functions like open the editor, save n all are going to come over here
 class Pytext:
@@ -32,6 +40,9 @@ class Pytext:
 		## this line of code is to place the scrollbar in the rightmost place using geometry commands
 		self.scroll.pack(side=tk.RIGHT, fill = tk.Y)
 		## as for the scrollbar we just need it to take the Y-axis space so we write tk.Y
+
+
+		self.menubar = Menubar(self)
 
 
 ##this is the code which is going to launch our program
