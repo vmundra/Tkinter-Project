@@ -19,10 +19,10 @@ class Menubar:
 		file_dropdown = tk.Menu(menubar, font = font_specs, tearoff=0) ## this tearoff is passed bcoz else we are able to take the 
 		## File menu icon and move it anywhere, thus to keep it stable we pass this argument
 
-		file_dropdown.add_command(label="New File", command=parent.new_file)
-		file_dropdown.add_command(label="Open File", command=parent.open_file)
-		file_dropdown.add_command(label="Save", command=parent.save)
-		file_dropdown.add_command(label="Save As", command=parent.save_as)
+		file_dropdown.add_command(label="New File", accelerator= "Ctrl+N" ,command=parent.new_file)
+		file_dropdown.add_command(label="Open File",accelerator= "Ctrl+O" ,command=parent.open_file)
+		file_dropdown.add_command(label="Save", accelerator= "Ctrl+S",command=parent.save)
+		file_dropdown.add_command(label="Save As", accelerator= "Ctrl+Shift+S",command=parent.save_as)
 		file_dropdown.add_separator()
 		file_dropdown.add_command(label="Exit")
 
@@ -87,6 +87,8 @@ class Pytext:
 
 		self.menubar = Menubar(self)
 		self.statusbar = Statusbar(self)
+
+		self.bind_shortcuts()
 
 
 ## note here there are two reasons or cases when we are going to use the "name" parameter in set_window_title function
@@ -178,6 +180,22 @@ class Pytext:
 
 		except Exception as e:
 			print(e)
+
+
+
+
+	def bind_shortcuts(self):
+
+		self.textarea.bind('<Control-n>', self.new_file)
+		self.textarea.bind('<Control-o>', self.open_file)
+		self.textarea.bind('<Control-s>', self.save)
+		self.textarea.bind('<Control-S>', self.save_as)
+
+
+
+
+
+
 
 
 ##this is the code which is going to launch our program
