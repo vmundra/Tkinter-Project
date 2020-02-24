@@ -29,6 +29,24 @@ class Menubar:
 		menubar.add_cascade(label = "File" ,menu=file_dropdown, command = parent.master.destroy)
 
 
+
+class Statusbar:
+
+	def __init__(self, parent):
+
+		font_specs = ("windows",9)
+
+		self.status = tk.StringVar() ## It allows us to create a string variable
+		self.status.set("PyText - 0.1 Vian")
+
+		label = tk.Label(parent.textarea, textvariable = self.status, fg="black", bg="lightgrey", anchor='sw', font=font_specs) ## fg=foreground, bg =background,
+		## anchor tag is for position of the text,here it is south west
+
+		label.pack(side=tk.BOTTOM, fill=tk.BOTH)
+
+
+
+
 ## This is going to be the main class
 ## functions like open the editor, save n all are going to come over here
 class Pytext:
@@ -68,6 +86,7 @@ class Pytext:
 
 
 		self.menubar = Menubar(self)
+		self.statusbar = Statusbar(self)
 
 
 ## note here there are two reasons or cases when we are going to use the "name" parameter in set_window_title function
