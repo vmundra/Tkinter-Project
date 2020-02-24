@@ -6,7 +6,14 @@ import tkinter as tk
 class Menubar:
 
 	def __init__(self, parent):
-		pass
+
+		font_specs = ("windows",9)
+
+		menubar = tk.Menu(parent.master, font = font_specs)
+
+		## thus now in this code, we are creating a menubar and displaying it in the master window
+		parent.master.config(menu=menubar)
+
 
 
 
@@ -20,6 +27,10 @@ class Pytext:
 		master.geometry("970x500")
 
 		font_specs = ("windows",11)
+
+		## as master is one of our main window so we need it's access everwhere
+		## thus to pass it even in the Menubar class we write this
+		self.master = master 
 
 		self.textarea = tk.Text(master, font = font_specs)
 		self.scroll = tk.Scrollbar(master, command = self.textarea.yview) ## yview means that scroll it in the Y-axis direction
