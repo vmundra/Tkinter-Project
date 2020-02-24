@@ -86,7 +86,10 @@ class Pytext:
 
 
 	def new_file(self):
-		pass
+		
+		self.textarea.delete(1.0, tk.END)
+		self.filename = None
+		self.set_window_title()
 
 
 
