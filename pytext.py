@@ -40,7 +40,7 @@ class Pytext:
 
 		font_specs = ("windows",11)
 
-		self.filename = None ## initially any file won't be there
+		self.filename = None ## initially there won't be any file
 
 		## as master is one of our main window so we need it's access everwhere
 		## thus to pass it even in the Menubar class we write this
@@ -70,11 +70,25 @@ class Pytext:
 		self.menubar = Menubar(self)
 
 
-	def set_window_title(self):
-		pass
+## note here there are two reasons or cases when we are going to use the "name" parameter in set_window_title function
+
+## 1st => when we open a file from the open_file function, we need to pass the name of opened file so that it's name comes at the top
+
+## 2nd => when we just create a new file and don't assign any name to it, at that time we need the default name to be just "new document" or anyhting
+
+	def set_window_title(self, name=None):
+		
+		if name:
+			self.master.title(name + " = PyText")
+		else:
+			self.master.title("Vian")
+
+
 
 	def new_file(self):
 		pass
+
+
 
 	def open_file(self):
 		
@@ -86,11 +100,16 @@ class Pytext:
 																						("HTML Documents", "*.html"),
 																						("CSS Documents","*.css")])
 		if self.filename:
-			self.textarea.delete(1.0,tk.END) ## first as  r opening a new file delete all the previous contents in the text area
+			self.textarea.delete(1.0,tk.END) ## first as we r opening a new file delete all the previous contents in the text area
 
 			with open(self.filename, "r") as f: ## open the specific file in the read mode
 
 				self.textarea.insert(1.0,f.read()) ## so now insert the contents of the file from the first character place
+
+			self.set_window_title(self.filename)
+
+
+
 
 
 
