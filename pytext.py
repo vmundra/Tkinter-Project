@@ -1,6 +1,7 @@
 ## Tkinter is part of python library so we don't need to install it
 import tkinter as tk
 
+from tkinter import filedialog ## it opens the file explorer dialog box
 
 
 class Menubar:
@@ -39,6 +40,8 @@ class Pytext:
 
 		font_specs = ("windows",11)
 
+		self.filename = None ## initially any file won't be there
+
 		## as master is one of our main window so we need it's access everwhere
 		## thus to pass it even in the Menubar class we write this
 		self.master = master 
@@ -74,7 +77,22 @@ class Pytext:
 		pass
 
 	def open_file(self):
-		pass
+		
+		self.filename = filedialog.askopenfilename(defaultextension=".txt", filetypes=[("All Files", "*.*"),
+																						("Text File" , "*.txt"),
+																						("Python Scripts", "*.py"),
+																						("Markdown Documents","*.md"),
+																						("JavaScript Files", "*.js"),
+																						("HTML Documents", "*.html"),
+																						("CSS Documents","*.css")])
+		if self.filename:
+			self.textarea.delete(1.0,tk.END) ## first as  r opening a new file delete all the previous contents in the text area
+
+			with open(self.filename, "r") as f: ## open the specific file in the read mode
+
+				self.textarea.insert(1.0,f.read()) ## so now insert the contents of the file from the first character place
+
+
 
 	def save(self):
 		pass
