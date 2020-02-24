@@ -14,7 +14,18 @@ class Menubar:
 		## thus now in this code, we are creating a menubar and displaying it in the master window
 		parent.master.config(menu=menubar)
 
+		## place the dropdown in the menubar
+		file_dropdown = tk.Menu(menubar, font = font_specs, tearoff=0) ## this tearoff is passed bcoz else we are able to take the 
+		## File menu icon and move it anywhere, thus to keep it stable we pass this argument
+	
+		file_dropdown.add_command(label="New File")
+		file_dropdown.add_command(label="Open File")
+		file_dropdown.add_command(label="Save")
+		file_dropdown.add_command(label="Save As")
+		file_dropdown.add_separator()
+		file_dropdown.add_command(label="Exit")
 
+		menubar.add_cascade(label = "File" ,menu=file_dropdown)
 
 
 ## This is going to be the main class
