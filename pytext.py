@@ -45,6 +45,14 @@ class Statusbar:
 		label.pack(side=tk.BOTTOM, fill=tk.BOTH)
 
 
+	def update_status(self, *args):
+
+		if isinstance(args[0], bool): ## so this args[0] is the first parameter in the above *args and if it's boolean value id true then do the foll.
+			self.status.set("Your file has been saved!")
+		else:
+			self.status.set("PyText - 0.1 Vian")
+
+
 
 
 ## This is going to be the main class
@@ -145,7 +153,7 @@ class Pytext:
 				textarea_content = self.textarea.get(1.0,tk.END)
 				with open(self.filename, "w") as f:
 					f.write(textarea_content)
-
+				self.statusbar.update_status(True)
 			except Exception as e:
 				print(e)
 
@@ -176,6 +184,7 @@ class Pytext:
 				f.write(textarea_content)
 			self.filename = new_file
 			self.set_window_title(self.filename)
+			self.statusbar.update_status(True)
 
 
 		except Exception as e:
@@ -190,6 +199,7 @@ class Pytext:
 		self.textarea.bind('<Control-o>', self.open_file)
 		self.textarea.bind('<Control-s>', self.save)
 		self.textarea.bind('<Control-S>', self.save_as)
+		self.textarea.bind('<Key>',self.statusbar.update_status)
 
 
 
