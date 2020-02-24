@@ -120,7 +120,29 @@ class Pytext:
 		pass
 
 	def save_as(self):
-		pass
+		
+		try:
+			new_file = filedialog.asksaveasfilename(initialfile ="Untitled.txt",defaultextension=".txt", filetypes=[("All Files", "*.*"),
+																													("Text File" , "*.txt"),
+																													("Python Scripts", "*.py"),
+																													("Markdown Documents","*.md"),
+																													("JavaScript Files", "*.js"),
+																													("HTML Documents", "*.html"),
+																													("CSS Documents","*.css")])
+
+
+			textarea_content = self.textarea.get(1.0,tk.END) ## what this does is it takes all what so ever is written in the tetarea
+															 ## currently and say copies it in the variable textarea_content
+															 ## and then this is used in f.write(textarea_content) 
+
+			with open(new_file, "w") as f:
+				f.write(textarea_content)
+			self.filename = new_file
+			self.set_window_title(self.filename)
+
+
+		except Exception as e:
+			print(e)
 
 
 ##this is the code which is going to launch our program
