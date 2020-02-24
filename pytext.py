@@ -3,6 +3,7 @@ import tkinter as tk
 
 from tkinter import filedialog ## it opens the file explorer dialog box
 
+from tkinter import messagebox ## this is imported to get the drop down list
 
 class Menubar:
 
@@ -24,9 +25,33 @@ class Menubar:
 		file_dropdown.add_command(label="Save", accelerator= "Ctrl+S",command=parent.save)
 		file_dropdown.add_command(label="Save As", accelerator= "Ctrl+Shift+S",command=parent.save_as)
 		file_dropdown.add_separator()
-		file_dropdown.add_command(label="Exit")
+		file_dropdown.add_command(label="Exit",command = parent.master.destroy)
 
-		menubar.add_cascade(label = "File" ,menu=file_dropdown, command = parent.master.destroy)
+		about_dropdown = tk.Menu(menubar,font = font_specs, tearoff=0)
+
+		about_dropdown.add_command(label="Release Notes", command=self.show_release_notes)
+		about_dropdown.add_separator()
+		about_dropdown.add_command(label="About", command=self.show_about_message)
+
+		menubar.add_cascade(label = "File" ,menu=file_dropdown)
+		menubar.add_cascade(label = "About", menu=about_dropdown)
+
+
+	def show_about_message(self):
+
+		box_title = "About Pytext"
+		box_message= "A cool python Text Editor made using Tkinter :)"
+
+		messagebox.showinfo(box_title,box_message)
+
+
+	def show_release_notes(self):
+
+		box_title = "Notes"
+		box_message= "Version 1.68"
+
+		messagebox.showinfo(box_title,box_message)
+
 
 
 
